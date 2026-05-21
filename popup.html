@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>UnlockAll</title>
+  <title>Overpass</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="popup.css"/>
@@ -21,8 +21,8 @@
       </svg>
     </div>
     <div>
-      <div class="logo-name">UnlockAll</div>
-      <div class="logo-sub" id="versionLabel">v2.1</div>
+      <div class="logo-name">Overpass</div>
+      <div class="logo-sub" id="versionLabel">v2.2.2</div>
     </div>
   </div>
   <div class="header-right">
@@ -39,7 +39,7 @@
 
 <!-- ══ QUICK BAR ══════════════════════════════════════════════ -->
 <div class="quick-bar">
-  <button class="quick-btn btn-green" id="btnUnlockAll">
+  <button class="quick-btn btn-green" id="btnOverpass">
     <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M18 1l3 3-3 3M3 12V9a6 6 0 0 1 11.87-1" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 23l-3-3 3-3M21 12v3a6 6 0 0 1-11.87 1" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     <span data-i18n="enableAll">Tout activer</span>
   </button>
@@ -50,20 +50,6 @@
   <button class="quick-btn btn-purple" id="btnPickOverlay">
     <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" fill="currentColor"/><path d="M22 12c0 0-4 8-10 8S2 12 2 12s4-8 10-8 10 8 10 8z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     <span id="btnPickerLabel" data-i18n="picker">Cibler</span>
-  </button>
-</div>
-
-<!-- ══ PANEL LAUNCHERS ════════════════════════════════════════ -->
-<div class="launcher-bar">
-  <button class="launcher-btn" id="btnOpenCookies">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor"/><circle cx="15" cy="9" r="1" fill="currentColor"/><circle cx="10" cy="14" r="1.5" fill="currentColor"/><circle cx="15.5" cy="14.5" r="1" fill="currentColor"/></svg>
-    <span data-i18n="launchCookies">Cookies</span>
-    <span class="launcher-arrow">↗</span>
-  </button>
-  <button class="launcher-btn" id="btnOpenResources">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    <span data-i18n="launchResources">Ressources</span>
-    <span class="launcher-arrow">↗</span>
   </button>
 </div>
 
@@ -371,7 +357,7 @@
   <div class="settings-section">
     <div class="settings-label" data-i18n="settingAbout">À propos</div>
     <div class="about-card">
-      <div class="about-row"><span class="about-key">Version</span><span class="about-val mono" id="aboutVersion">2.1.0</span></div>
+      <div class="about-row"><span class="about-key">Version</span><span class="about-val mono" id="aboutVersion">2.2.2</span></div>
       <div class="about-row"><span class="about-key" data-i18n="aboutEngine">Moteur</span><span class="about-val mono">MV3 · MAIN world · L1–L9</span></div>
       <div class="about-row"><span class="about-key" data-i18n="aboutCompat">Compatibilité</span><span class="about-val mono">Chrome 111+ · Edge 111+</span></div>
       <div class="about-row"><span class="about-key">License</span><span class="about-val mono">MIT</span></div>
