@@ -1,4 +1,4 @@
-/* ══ UnlockAll v2.1 – popup.css ═══════════════════════════════ */
+/* ══ Overpass v2.2.2 – popup.css ═══════════════════════════════ */
 
 /* ── Dark theme ──────────────────────────────────────────────── */
 .dark {
@@ -120,23 +120,6 @@ body {
 .btn-purple.picking { background:rgba(167,139,250,.2); border-color:var(--purple); animation:flicker .9s infinite; }
 @keyframes flicker { 0%,100%{opacity:1} 50%{opacity:.55} }
 .quick-btn:active { transform:scale(.96); }
-
-/* ── Launcher bar ────────────────────────────────────────────── */
-.launcher-bar {
-  display:flex; gap:6px; padding:6px 12px;
-  background:var(--surface2); border-bottom:1px solid var(--border); flex-shrink:0;
-}
-.launcher-btn {
-  display:flex; align-items:center; gap:6px; flex:1;
-  padding:6px 10px; border-radius:var(--rs);
-  background:var(--surface); border:1px solid var(--border2);
-  color:var(--muted); font-family:'Outfit',sans-serif;
-  font-size:11.5px; font-weight:500; cursor:pointer; transition:all .13s;
-}
-.launcher-btn:hover { border-color:var(--green); color:var(--green); background:var(--green-glow); }
-.launcher-btn:active { transform:scale(.97); }
-.launcher-arrow { margin-left:auto; font-size:11px; opacity:.5; }
-.launcher-btn:hover .launcher-arrow { opacity:1; }
 
 /* ── Tabs ────────────────────────────────────────────────────── */
 .tabs {
