@@ -1,5 +1,5 @@
 /**
- * UnlockAll v2.1 – popup.js
+ * Overpass v2.2.2 – popup.js
  *
  * Sécurité :
  * - Aucun innerHTML avec données non échappées (XSS safe)
@@ -16,7 +16,6 @@ const I18N = {
     active:'Actif', inactive:'Inactif',
     enableAll:'Tout activer', disableAll:'Tout désactiver',
     picker:'Cibler', cancelPicker:'Annuler ciblage',
-    launchCookies:'Cookies', launchResources:'Ressources',
     tabProtections:'Protections', tabOverlays:'Overlays',
     tabScripts:'Scripts', tabSettings:'Paramètres',
     groupMouse:'Souris & Sélection', groupClipboard:'Copier-coller & Clavier',
@@ -63,11 +62,9 @@ const I18N = {
     toastOverlayRestored:'✓ Overlay restauré', toastAllRestored:'✓ Tous restaurés',
     toastScriptSaved:'✓ Script enregistré', toastScriptDeleted:'Script supprimé',
     toastPicker:'🎯 Cliquez sur un élément…', toastPickerDone:'✓ Élément masqué',
-    toastPickerCancelled:'Ciblage annulé',
+    toastPickerCancelled:'Ciblage annulé', toastCantOpen:'Impossible sur cette page',
     toastNoDefaults:'Aucun défaut sauvegardé',
     toastIncognito:"Activez le mode incognito dans les paramètres de l'extension",
-    toastPanelOpened:'Panel ouvert sur la page',
-    toastCantOpen:'Impossible sur cette page',
     confirmFactoryTitle:'Réinitialisation',
     confirmFactoryMsg:'Supprimer tous les scripts et restaurer la configuration usine ?',
     confirmDeleteTitle:'Supprimer le script',
@@ -80,7 +77,6 @@ const I18N = {
     active:'Active', inactive:'Inactive',
     enableAll:'Enable all', disableAll:'Disable all',
     picker:'Pick', cancelPicker:'Cancel pick',
-    launchCookies:'Cookies', launchResources:'Resources',
     tabProtections:'Protections', tabOverlays:'Overlays',
     tabScripts:'Scripts', tabSettings:'Settings',
     groupMouse:'Mouse & Selection', groupClipboard:'Clipboard & Keyboard',
@@ -127,11 +123,9 @@ const I18N = {
     toastOverlayRestored:'✓ Overlay restored', toastAllRestored:'✓ All restored',
     toastScriptSaved:'✓ Script saved', toastScriptDeleted:'Script deleted',
     toastPicker:'🎯 Click an element…', toastPickerDone:'✓ Element hidden',
-    toastPickerCancelled:'Pick cancelled',
+    toastPickerCancelled:'Pick cancelled', toastCantOpen:'Not available on this page',
     toastNoDefaults:'No defaults saved yet',
     toastIncognito:'Allow incognito in extension settings',
-    toastPanelOpened:'Panel opened on page',
-    toastCantOpen:'Not available on this page',
     confirmFactoryTitle:'Factory Reset',
     confirmFactoryMsg:'Delete all scripts and restore factory config?',
     confirmDeleteTitle:'Delete script',
@@ -144,7 +138,6 @@ const I18N = {
     active:'Activo', inactive:'Inactivo',
     enableAll:'Activar todo', disableAll:'Desactivar todo',
     picker:'Selec.', cancelPicker:'Cancelar',
-    launchCookies:'Cookies', launchResources:'Recursos',
     tabProtections:'Protecciones', tabOverlays:'Overlays',
     tabScripts:'Scripts', tabSettings:'Ajustes',
     groupMouse:'Ratón y Selección', groupClipboard:'Portapapeles y Teclado',
@@ -191,11 +184,9 @@ const I18N = {
     toastOverlayRestored:'✓ Overlay restaurado', toastAllRestored:'✓ Todo restaurado',
     toastScriptSaved:'✓ Script guardado', toastScriptDeleted:'Script eliminado',
     toastPicker:'🎯 Haz clic en un elemento…', toastPickerDone:'✓ Elemento oculto',
-    toastPickerCancelled:'Selección cancelada',
+    toastPickerCancelled:'Selección cancelada', toastCantOpen:'No disponible en esta página',
     toastNoDefaults:'Sin valores por defecto',
     toastIncognito:'Permite incógnito en ajustes de extensión',
-    toastPanelOpened:'Panel abierto en la página',
-    toastCantOpen:'No disponible en esta página',
     confirmFactoryTitle:'Restablecimiento',
     confirmFactoryMsg:'¿Eliminar scripts y restaurar ajustes de fábrica?',
     confirmDeleteTitle:'Eliminar script',
@@ -208,7 +199,6 @@ const I18N = {
     active:'Aktiv', inactive:'Inaktiv',
     enableAll:'Alle aktivieren', disableAll:'Alle deaktivieren',
     picker:'Auswahl', cancelPicker:'Abbrechen',
-    launchCookies:'Cookies', launchResources:'Ressourcen',
     tabProtections:'Schutz', tabOverlays:'Overlays',
     tabScripts:'Skripte', tabSettings:'Einstellungen',
     groupMouse:'Maus & Auswahl', groupClipboard:'Zwischenablage & Tastatur',
@@ -255,11 +245,9 @@ const I18N = {
     toastOverlayRestored:'✓ Overlay wiederhergestellt', toastAllRestored:'✓ Alle wiederhergestellt',
     toastScriptSaved:'✓ Skript gespeichert', toastScriptDeleted:'Skript gelöscht',
     toastPicker:'🎯 Element anklicken…', toastPickerDone:'✓ Element ausgeblendet',
-    toastPickerCancelled:'Auswahl abgebrochen',
+    toastPickerCancelled:'Auswahl abgebrochen', toastCantOpen:'Auf dieser Seite nicht verfügbar',
     toastNoDefaults:'Noch keine Standards gespeichert',
     toastIncognito:'Inkognito in Erweiterungseinstellungen erlauben',
-    toastPanelOpened:'Panel auf der Seite geöffnet',
-    toastCantOpen:'Auf dieser Seite nicht verfügbar',
     confirmFactoryTitle:'Zurücksetzen',
     confirmFactoryMsg:'Alle Skripte löschen und Werkseinstellungen wiederherstellen?',
     confirmDeleteTitle:'Skript löschen',
@@ -273,7 +261,7 @@ const I18N = {
 // ════════════════════════════════════════════════════════════════
 // CONSTANTS
 // ════════════════════════════════════════════════════════════════
-const VERSION = '2.1.0';
+const VERSION = '2.2.2';
 
 const FEATURE_GROUPS = {
   mouse   : ['contextmenu','selectstart','cursor','pointerEvents'],
@@ -481,7 +469,7 @@ function updatePickerBtn() {
 // QUICK ACTIONS
 // ════════════════════════════════════════════════════════════════
 function initQuickActions() {
-  document.getElementById('btnUnlockAll')?.addEventListener('click', () => {
+  document.getElementById('btnOverpass')?.addEventListener('click', () => {
     const all = {};
     Object.keys(FACTORY_DEFAULTS).forEach(k => all[k] = true);
     applySettings(all);
@@ -513,31 +501,6 @@ function initQuickActions() {
       toast(t('toastPicker'), 'info', 10000);
       await send('activatePicker');
     }
-  });
-}
-
-// ════════════════════════════════════════════════════════════════
-// PANEL LAUNCHERS — Cookies & Ressources (Shadow DOM flottants)
-// ════════════════════════════════════════════════════════════════
-function initPanelLaunchers() {
-  document.getElementById('btnOpenCookies')?.addEventListener('click', async () => {
-    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-    if (!tab?.url || tab.url.startsWith('chrome') || tab.url.startsWith('about')) {
-      toast(t('toastCantOpen'), 'err'); return;
-    }
-    await send('openCookiePanel');
-    toast(t('toastPanelOpened'), 'info');
-    window.close(); // Fermer le popup pour voir le panel sur la page
-  });
-
-  document.getElementById('btnOpenResources')?.addEventListener('click', async () => {
-    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-    if (!tab?.url || tab.url.startsWith('chrome') || tab.url.startsWith('about')) {
-      toast(t('toastCantOpen'), 'err'); return;
-    }
-    await send('openResourcePanel');
-    toast(t('toastPanelOpened'), 'info');
-    window.close();
   });
 }
 
@@ -921,7 +884,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   initTabs();
   initToggles();
   initQuickActions();
-  initPanelLaunchers();
   initTools();
   initOverlayPanel();
   initScriptEditor();
